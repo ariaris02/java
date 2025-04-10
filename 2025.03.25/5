@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Main {
+	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
+		String[] course = {"Java", "C++", "HTML5", "ComputerStructure", "Android"};
+		int[] score = {95, 88, 76, 62, 55};
+
+		String input = " ";
+		while(!input.equals("-1")) {
+			input = scanner.next();
+			switch(input) {
+			case "Java" :
+				System.out.printf("%s : %d\n", course[0], score[0]);
+				break;
+			case "C++" :
+				System.out.printf("%s : %d\n", course[1], score[1]);
+				break;
+			case "HTML5" :
+				System.out.printf("%s : %d\n", course[2], score[2]);
+				break;
+			case "ComputerStructure" :
+				System.out.printf("%s : %d\n", course[3], score[3]);
+				break;
+			case "Android" :
+				System.out.printf("%s : %d\n", course[4], score[4]);
+				break;
+			case "-1" :
+				break;
+			default :
+				System.out.println("N/A");
+				break;
+			}
+		}
+	}
+}

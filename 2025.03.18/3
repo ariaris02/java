@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static boolean isOverlapping(int x1, int y1, int x2, int y2) {
+
+        int rect1_x1 = 100, rect1_y1 = 100;
+        int rect1_x2 = 200, rect1_y2 = 200;
+
+        if (x2 < rect1_x1 || x1 > rect1_x2 || y2 < rect1_y1 || y1 > rect1_y2) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("");
+        int x1 = scanner.nextInt();
+        int y1 = scanner.nextInt();
+
+        System.out.print("");
+        int x2 = scanner.nextInt();
+        int y2 = scanner.nextInt();
+
+        if (isOverlapping(x1, y1, x2, y2)) {
+            System.out.println("True");
+        } else {
+            System.out.println("False");
+        }
+
+        scanner.close();
+    }
+}

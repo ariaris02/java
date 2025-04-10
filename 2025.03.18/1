@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("");
+        int amount = scanner.nextInt();
+
+        int[] units = {50000, 10000, 1000, 500, 100, 50, 10, 1};
+        String[] unitNames = {"50,000won bill", "10,000won bill", "1,000won bill", "500won coin", "100won coin", "50won coin", "10won coin", "1won coin"};
+
+        for (int i = 0; i < units.length; i++) {
+            int count = amount / units[i];
+            if (count > 0) {
+                String unitName = unitNames[i];
+                if (count == 1) {
+                    unitName = unitName.replace("s", "");
+                } else {
+                    unitName = unitName + "(s)";
+                }
+                System.out.println(count + " " + unitName);
+                amount %= units[i];
+            }
+        }
+
+        scanner.close();
+    }
+}

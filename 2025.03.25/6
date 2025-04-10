@@ -1,0 +1,22 @@
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int mul = 0, n = 0, m = 0;
+        while(true){
+                try{
+                    n = scanner.nextInt();
+                    m = scanner.nextInt();
+                    break;
+                }
+                catch(InputMismatchException e){
+                    System.out.println("-1");
+                    scanner.nextLine();
+                }
+        }
+        mul = n * m;
+        System.out.println(mul);
+    }
+}

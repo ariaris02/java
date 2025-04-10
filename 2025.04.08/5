@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+        char op = scanner.next().charAt(0);
+
+        if (op == '+') {
+            Add add = new Add(num1, num2);
+            int result = add.result();
+            System.out.println(result);
+        } else if (op == '*') {
+            Mul mul = new Mul(num1, num2);
+            int result = mul.result();
+            System.out.println(result);
+        } else if (op == '-') {
+            Sub sub = new Sub(num1, num2);
+            int result = sub.result();
+            System.out.println(result);
+        } else if (op == '/') {
+            Div div = new Div(num1, num2);
+            if (num2 != 0) {
+                int result = div.result();
+                System.out.println(result);
+            } else {
+                System.out.println("계산할 수 없습니다.");
+            }
+        } else {
+            System.out.println("잘못된 연산자입니다.");
+        }
+    }
+}
+
+abstract class Calc { // 추상 클래스
+    int num1;
+    int num2;
+    public Calc(int num1, int num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+    abstract int result();
+}
+
+class Add extends Calc {
+    public Add(int num1, int num2) {
+        super(num1, num2);
+    }
+    
+    public int result() {
+        return num1 + num2;
+    }
+}
+
+class Mul extends Calc {
+    public Mul(int num1, int num2) {
+        super(num1, num2);
+    }
+    
+    public int result() {
+        return num1 * num2;
+    }
+}
+
+class Sub extends Calc {
+    public Sub(int num1, int num2) {
+        super(num1, num2);
+    }
+    
+    public int result() {
+        return num1 - num2;
+    }
+}
+
+class Div extends Calc {
+    public Div(int num1, int num2) {
+        super(num1, num2);
+    }
+    
+    public int result() {
+        return num1 / num2;
+    }
+}

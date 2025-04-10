@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("");
+        float num1 = scanner.nextFloat();
+
+        System.out.print("");
+        String operator = scanner.next();
+
+        System.out.print("");
+        float num2 = scanner.nextFloat();
+
+        float result = 0;
+        boolean valid = true;
+
+        if (operator.equals("+")) {
+            result = num1 + num2;
+        } else if (operator.equals("-")) {
+            result = num1 - num2;
+        } else if (operator.equals("*")) {
+            result = num1 * num2;
+        } else if (operator.equals("/")) {
+            if (num2 == 0) {
+                System.out.println("False");
+                valid = false;
+            } else {
+                result = num1 / num2;
+            }
+        } else {
+            System.out.println("False");
+            valid = false;
+        }
+
+        if (valid) {
+            System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
+        }
+
+        scanner.close();
+    }
+}

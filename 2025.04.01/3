@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        PhoneBook phonebook = new PhoneBook();
+        phonebook.run();
+    }
+}
+
+class Phone {
+    String name;
+    String tel;
+
+    Phone(String name, String tel) {
+        this.name = name;
+        this.tel = tel;
+    }
+}
+
+class PhoneBook {
+    Scanner scanner = new Scanner(System.in);
+    int numberOfContacts;  // 변수 이름 통일
+    String searchContacts;
+
+    PhoneBook() {
+        // 기본 생성자
+    }
+
+    int getNumber() {
+        while (true) {
+            numberOfContacts = scanner.nextInt();
+            if (numberOfContacts > 0) {
+                return numberOfContacts;
+            }
+        }
+    }
+
+    void run() {
+        // 배열 이름을 소문자로 통일하고 for문 조건 수정
+        Phone[] phone = new Phone[getNumber()];
+        for (int i = 0; i < phone.length; i++) {
+            phone[i] = new Phone(scanner.next(), scanner.next());
+        }
+        System.out.println("저장되었습니다...");
+
+        while (true) {
+            searchContacts = scanner.next();
+            if (searchContacts.equals("그만")) {
+                break;
+            }
+            int count = 0;  // 각 검색마다 카운트 초기화
+            for (int i = 0; i < phone.length; i++) {
+                if (searchContacts.equals(phone[i].name)) {
+                    System.out.println(phone[i].name + "의 번호는 " + phone[i].tel + " 입니다.");
+                    count++;
+                }
+            }
+            if (count == 0) {
+                System.out.println(searchContacts + " 이 없습니다.");
+            }
+        }
+        scanner.close();
+    }
+}

@@ -1,0 +1,20 @@
+public class Main {
+	public static void main (String args[])
+	{
+		int num[] = new int[99];
+		for(int i = 1; i <= num.length; i++) {
+			if(i % 10 == 3 || i % 10 == 6 || i % 10 == 9) {
+				System.out.printf(i + " jjak");
+				if(i > 9 && (i % 30 == 3 || i % 30 == 6 || i % 30 == 9))
+				{
+					System.out.print("jjak");
+				}
+				System.out.println();
+			}
+			if(( i / 10 == 3 || i / 10 == 6 || i / 10 == 9) && (i % 10 !=3 && i % 10 != 6 && i % 10 != 9))
+			{
+		    	System.out.println(i + " jjak");
+			}
+		}
+	}
+}

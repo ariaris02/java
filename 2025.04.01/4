@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main{
+  public static void main(String [] arg) {
+      String word;
+      Scanner scanner = new Scanner(System.in);
+      System.out.println("한영 단어 검색 프로그램입니다.");
+      while(true){  
+          word = scanner.nextLine();
+          if(word.equals("그만")){
+              break;
+          }
+          String result = Dictionary.kor2Eng(word);
+          System.out.println(word + " : " + result);
+      }
+      scanner.close();
+  }
+}
+
+class Dictionary {
+  private static String [] kor = {"사랑", "아기", "돈", "미래", "희망" };
+  private static String [] eng = {"love", "baby", "money", "future", "hope"};
+  
+  public static String kor2Eng(String word) {
+      for(int i = 0; i < 5; i++){
+          if(word.equals(kor[i])) {
+              return eng[i];
+          }
+      }
+      return "저의 사전에 없습니다.";
+  }
+}

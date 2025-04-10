@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        StackApp.run();
+    }
+}
+
+interface Stack {
+    int length();                  // 현재 스택에 저장된 개수 리턴
+    int capacity();                // 스택의 전체 저장 가능한 개수 리턴
+    String pop();                  // 스택의 top에 저장된 항목 리턴 및 삭제
+    boolean push(String val);     // 스택의 top에 항목 저장
+}
+
+class StringStack implements Stack {
+    private int numOfStack;
+    private int count = 0;
+    private String[] inputString;
+
+    public StringStack(int numOfStack) {
+        this.numOfStack = numOfStack;
+        inputString = new String[numOfStack];
+    }
+
+    public int length() {
+        return count;
+    }
+
+    public int capacity() {
+        return numOfStack;
+    }
+
+    public String pop() {
+        if (count == 0) {
+            return null;
+        }
+        String result = inputString[--count];
+        inputString[count] = null;
+        return result;
+    }
+
+    public boolean push(String val) {
+        if (count == numOfStack) {
+            System.out.println("스택이 꽉 차서 푸시 불가!");
+            return false;
+        }
+        inputString[count++] = val;
+        return true;
+    }
+}
+
+class StackApp {
+    public static void run() {
+        Scanner scanner = new Scanner(System.in);
+        int getNumOfStack = scanner.nextInt();  // 스택 용량 입력
+        StringStack stringStack = new StringStack(getNumOfStack);
+        scanner.nextLine(); // 버퍼 비우기
+
+        while (true) {
+            String input = scanner.nextLine();
+            if ("그만".equals(input)) {
+                break;
+            }
+            if (!stringStack.push(input)) {
+                continue;
+            }
+        }
+
+        System.out.print("스택에 저장된 모든 문자열 팝 : ");
+        while (stringStack.length() > 0) {
+            System.out.print(stringStack.pop() + " ");
+        }
+    }
+}
