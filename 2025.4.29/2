@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int count = 0;
+        String inputString;
+        while(true) {
+            inputString = scanner.nextLine();
+            StringTokenizer st = new StringTokenizer(inputString);
+            if(inputString.equals("그만")) {
+                System.out.println("종료합니다...");
+                break;
+            }
+            while(st.hasMoreTokens()) {
+                count++;
+                st.nextToken();
+            }
+            System.out.println("어절 개수는 " + count);
+            count = 0;
+        }
+    }
+}
