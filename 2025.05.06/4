@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import java.util.Vector;
+
+abstract class Shape {
+    abstract public void draw();
+}
+
+class Line extends Shape {
+    public void draw() {
+        System.out.println("Line");
+    }
+}
+
+class Rect extends Shape {
+    public void draw() {
+        System.out.println("Rect");
+    }
+}
+
+class Circle extends Shape {
+    public void draw() {
+        System.out.println("Circle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Vector<Shape> vector = new Vector<Shape>();
+
+        while (true) {
+            System.out.print("삽입(1), 삭제(2), 모두 보기(3), 종료(4)>>");
+            int command = scanner.nextInt();
+
+            if (command == 1) {
+                System.out.print("Line(1), Rect(2), Circle(3)>>");
+                int shape = scanner.nextInt();
+                switch (shape) {
+                    case 1:
+                        vector.add(new Line());
+                        break;
+                    case 2:
+                        vector.add(new Rect());
+                        break;
+                    case 3:
+                        vector.add(new Circle());
+                        break;
+                    default:
+                        System.out.println("잘못 입력하였습니다.");
+                }
+            } else if (command == 2) {
+                System.out.print("삭제할 도형의 위치>>");
+                int index = scanner.nextInt();
+                if (index < 0 || index >= vector.size()) {
+                    System.out.println("삭제할 수 없습니다.");
+                } else {
+                    vector.remove(index);
+                }
+            } else if (command == 3) {
+                for (int i = 0; i < vector.size(); i++) {
+                    vector.get(i).draw();
+                }
+            } else if (command == 4) {
+                System.out.println("프로그램종료");
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}

@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String, Integer> dic = new HashMap<String, Integer>();
+        Scanner scanner = new Scanner(System.in);
+        String inputString;
+        int point;
+
+        while (true) {
+            inputString = scanner.next();
+
+            if (inputString.equals("그만"))
+                break;
+
+            point = scanner.nextInt();
+            if (dic.containsKey(inputString)) {
+                dic.put(inputString, dic.get(inputString) + point);
+            } else {
+                dic.put(inputString, point);
+            }
+
+            for (String key : dic.keySet()) {
+                System.out.print("(" + key + ", " + dic.get(key) + ")");
+            }
+            System.out.println();
+        }
+    }
+}
