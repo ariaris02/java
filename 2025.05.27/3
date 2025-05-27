@@ -1,0 +1,40 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+class KeyCodeEx extends JFrame {
+    private JLabel la = new JLabel("", SwingConstants.CENTER); // Center-align the label
+
+    public KeyCodeEx() {
+        setTitle("Key Code 예제 : F1키:초록색, % 키 노란색");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout()); // Use BorderLayout
+
+        c.addKeyListener(new MyKeyListener());
+        c.add(la, BorderLayout.CENTER); // Add label to center
+
+        setSize(300,150);
+        setVisible(true);
+
+        c.setFocusable(true);
+        c.requestFocusInWindow(); // Better than requestFocus
+    }
+
+    class MyKeyListener extends KeyAdapter {
+        public void keyPressed(KeyEvent e) {
+            la.setText(e.getKeyText(e.getKeyCode()));
+
+            if (e.getKeyChar() == '%') {
+                getContentPane().setBackground(Color.YELLOW);
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_F1) {
+                getContentPane().setBackground(Color.GREEN);
+            }
+        }
+    }
+
+    public static void main(String [] args) {
+        SwingUtilities.invokeLater(() -> new KeyCodeEx()); // Run on the EDT
+    }
+}

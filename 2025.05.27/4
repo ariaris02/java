@@ -1,0 +1,71 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class GamblingGame extends JFrame {
+    private JLabel[] labels = new JLabel[3];
+
+    public GamblingGame() {
+        setTitle("Open Challenge 10");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 150);
+
+        // 게임 패널 생성
+        GamePanel panel = new GamePanel();
+        setContentPane(panel);
+        setVisible(true);
+    }
+
+    // 게임 패널 클래스
+    class GamePanel extends JPanel {
+        public GamePanel() {
+            setLayout(new GridLayout(2, 1));
+
+            // 숫자를 표시할 라벨 3개 생성
+            JPanel numberPanel = new JPanel();
+            numberPanel.setLayout(new GridLayout(1, 3));
+            for (int i = 0; i < 3; i++) {
+                labels[i] = new JLabel("0", SwingConstants.CENTER);
+                labels[i].setFont(new Font("Serif", Font.BOLD, 36));
+                labels[i].setOpaque(true);
+                labels[i].setBackground(Color.MAGENTA);
+                labels[i].setForeground(Color.YELLOW);
+                numberPanel.add(labels[i]);
+            }
+
+            add(numberPanel);
+
+            JLabel message = new JLabel("엔터 키를 눌러주세요", SwingConstants.CENTER);
+            add(message);
+
+            // 포커스를 받아야 키 이벤트 처리가 가능함
+            setFocusable(true);
+            requestFocus();
+
+            // 키 리스너 등록
+            addKeyListener(new KeyAdapter() {
+                public void keyPressed(KeyEvent e) {
+                    // 엔터 키가 눌렸는지 확인
+                    if (e.getKeyChar() == '\n') {
+                        int[] nums = new int[3];
+                        for (int i = 0; i < 3; i++) {
+                            nums[i] = (int)(Math.random() * 5); // 0~4 사이 숫자
+                            labels[i].setText(Integer.toString(nums[i]));
+                        }
+
+                        // 모두 같은 숫자인지 확인
+                        if (nums[0] == nums[1] && nums[1] == nums[2]) {
+                            message.setText("축하합니다!");
+                        } else {
+                            message.setText("다시 시도하세요.");
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    public static void main(String[] args) {
+        new GamblingGame();
+    }
+}
